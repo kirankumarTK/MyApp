@@ -6,3 +6,4 @@ navigation
 axios
 vector icons
 react-i18next i18next react-native-localize
+i react-native-version-info

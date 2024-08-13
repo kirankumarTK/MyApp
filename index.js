@@ -4,6 +4,6 @@
 
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
-import LoginView from './smartsell/Login/LoginView.tsx';
+import Application from './smartsell/Components/Application';
 
-AppRegistry.registerComponent(appName, () => LoginView);
+AppRegistry.registerComponent(appName, () => Application);
