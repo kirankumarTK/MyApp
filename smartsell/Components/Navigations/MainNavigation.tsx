@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginView from '../../Login/LoginView';
+import LoginView from '../../screens/Login/LoginView';
 import {RootStackPramsList} from './RootStackPramsList';
+import HomeView from '../../screens/HomePage/HomeView';
 const Stack = createNativeStackNavigator<RootStackPramsList>();
 
 const MainNavigation = () => {
@@ -11,6 +12,7 @@ const MainNavigation = () => {
           headerShown: false,
         }}>
         <Stack.Screen name="Login" component={LoginView} />
+        <Stack.Screen name='Home' component={HomeView}/>
       </Stack.Group>
     </Stack.Navigator>
   );

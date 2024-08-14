@@ -1,5 +1,5 @@
 import {APP_LOGIN_BG, APP_LOGO_BG} from '@env';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Image,
@@ -9,26 +9,15 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import DeviceInfo from 'react-native-version-info';
-import Appstlye from '../AppThemes/Appstlye';
-import translation from '../Commons/i18n';
-import {getAsyncData, storeAsyncData} from '../Commons/utilities';
+import Appstlye from '../../AppThemes/Appstlye';
+import translation from '../../Commons/i18n';
+import {getBuildversion} from '../../Commons/utilities';
+import {LoginViewModel} from './LoginViewModel';
 
 const LoginView = () => {
   const {t} = useTranslation();
+  const {onLoginPress} = LoginViewModel(t);
 
-  useEffect(() => {
-    storeAsyncData('Test', 'Kirankumar T K').then(()=> {
-
-    });
-    getAsyncData('Test')
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
   return (
     <React.Fragment>
       <ImageBackground
@@ -47,7 +36,7 @@ const LoginView = () => {
 
           <TouchableOpacity
             onPress={() => {
-              translation.switchLanguage('en');
+              onLoginPress();
             }}
             style={Appstlye.style.loginButtonStyle}>
             <Text style={Appstlye.style.buttonText}>{t('login')}</Text>
@@ -55,7 +44,7 @@ const LoginView = () => {
 
           <View style={Appstlye.style.login_page_copyright_view}>
             <Text style={[Appstlye.style.app_small_text]}>
-              {t('version') + DeviceInfo.appVersion}
+              {t('version') + getBuildversion()}
             </Text>
             <Text style={[Appstlye.style.app_small_text]}>
               {t('copy_right')}
