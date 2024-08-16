@@ -5,8 +5,8 @@ const StatusView = () => {
     useEffect(()=>{
         AppDatabase.executeFetch("Select AccountId,AccountName from AccountMaster LIMIT 1").then(result => {
             console.log(result[0].AccountId + '     ' + result[0].AccountName);
-        }).catch(erroe => {
-            console.log(erroe);
+        }).catch(error => {
+            console.log(error);
         })
     },[])
     return (
