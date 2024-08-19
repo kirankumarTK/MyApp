@@ -1,16 +1,15 @@
-import {useCallback, useEffect, useState, version} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { TFunction } from 'i18next';
+import { useCallback, useEffect } from 'react';
+import AysncKeys from '../../Commons/AsyncKeys';
 import {
   getAppversion,
   getAsyncData,
   showAlert,
   storeAsyncData,
 } from '../../Commons/utilities';
-import {Alert} from 'react-native';
-import {TFunction} from 'i18next';
-import AysncKeys from '../../Commons/AsyncKeys';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackPramsList} from '../../Components/Navigations/RootStackPramsList';
+import { RootStackPramsList } from '../../Components/Navigations/RootStackPramsList';
 
 export const LoginViewModel = (t: TFunction<'translation', undefined>) => {
   const navigation =

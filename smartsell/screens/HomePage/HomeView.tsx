@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
-import {Text} from 'react-native';
+import React from 'react';
 import Drawernavigation from '../../Components/Navigations/DrawerNavigation';
+import { HomeViewModel } from './HomeViewModel';
+
 const HomeView = () => {
+  const {homeMenuList} = HomeViewModel();
   return (
     <React.Fragment>
-      <Drawernavigation />
+      <Drawernavigation homeMenuList = {homeMenuList}/>
     </React.Fragment>
   );
 };

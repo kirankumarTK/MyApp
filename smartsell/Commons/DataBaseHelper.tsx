@@ -35,7 +35,7 @@ async function createSqliteInstance(): Promise<Sqlite.SQLiteDatabase> {
   sqliteInstance = await Sqlite.openDatabase({
     name: DATABASE_NAME,
     createFromLocation: 1,
-    location : 'default'
+    location: 'default',
   });
   await prepareDatabase(sqliteInstance);
   return sqliteInstance;
