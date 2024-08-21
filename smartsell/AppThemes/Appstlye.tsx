@@ -6,8 +6,8 @@ const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 const appIconsize = 20;
 const appElevation = 2;
-const titleFontSize = 15;
-
+const titleFontSize = 20;
+const buttonFontSize = 15;
 
 const style = StyleSheet.create({
   cardView: {
@@ -59,7 +59,7 @@ const style = StyleSheet.create({
   },
   buttonText: {
     color: AppColor.buttonTextColor,
-    fontSize: titleFontSize,
+    fontSize: buttonFontSize,
     fontWeight: 'bold',
   },
   app_small_text: {
@@ -69,10 +69,24 @@ const style = StyleSheet.create({
   },
   login_page_copyright_view: {
     position: 'absolute',
-    alignItems : 'center',
-    alignSelf : 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     bottom: 10,
+  },
+  DrawerProfile_BG: {
+    height : '20%',
+    width : '100%',
+    backgroundColor : AppColor.secondaryColor,
+  },
+  Drawer_Text_View : {
+    color: AppColor.textColor,
+    fontSize: titleFontSize,
+    fontWeight: 'bold',
+  },
+  Drawer_View : {
+   padding : 10
+   
   },
 });
 
-export default {style, screenHeight, screenWidth, appIconsize};
+export default {style, screenHeight, screenWidth, appIconsize, appElevation};

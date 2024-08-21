@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 const StatusView = () => {
-    return (
-        <React.Fragment>
-            <Text>Status</Text>
-        </React.Fragment>
-    );
-}
+  return (
+    <React.Fragment>
+      <Text>Status</Text>
+    </React.Fragment>
+  );
+};
 
 export default StatusView;
