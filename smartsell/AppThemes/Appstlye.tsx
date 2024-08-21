@@ -1,5 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import AppColor from './AppColor';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -63,7 +64,7 @@ const style = StyleSheet.create({
   },
   app_small_text: {
     color: AppColor.textColor,
-    fontSize: 10,
+    fontSize: RFPercentage(0.9),
     fontWeight: 'bold',
   },
   login_page_copyright_view: {
