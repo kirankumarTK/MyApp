@@ -8,3 +8,5 @@ vector icons
 react-i18next i18next react-native-localize
 react-native-version-info
 react-native-sqlite-storage
+react-native-get-location
+react-native-permissions

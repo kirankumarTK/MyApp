@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
-import {HhtMenuMasterBO} from '../../models/commonModels';
+import { useEffect, useState } from 'react';
+import { HhtMenuMasterBO } from '../../models/commonModels';
 import AppDatabase from '../../Commons/DataBaseHelper';
-import {showAlert} from '../../Commons/utilities';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackPramsList} from '../../Components/Navigations/RootStackPramsList';
+import { showAlert } from '../../Commons/utilities';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackPramsList } from '../../Components/Navigations/RootStackPramsList';
 
 export const HomeViewModel = () => {
   const navigation =
@@ -22,7 +22,7 @@ export const HomeViewModel = () => {
 
   const getHomeMenuList = () => {
     const homeMenuList: Array<HhtMenuMasterBO> = [];
-    let query = "Select * from HhtMenuMaster where MenuType = 'HOME_MENU' AND Flag = '1' Order by MNumber";
+    let query = "Select * from HhtMenuMaster where MenuType = 'HOME_MENU' AND Flag = '1' AND lang = 'en' Order by MNumber";
     AppDatabase.executeFetch(query)
       .then((result: Array<HhtMenuMasterBO>) => {
         setMenulist(result);
@@ -32,5 +32,5 @@ export const HomeViewModel = () => {
       });
     return homeMenuList;
   };
-  return {homeMenuList};
+  return { homeMenuList };
 };

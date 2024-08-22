@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert, AlertButton, Dimensions} from 'react-native';
+import { useState } from 'react';
+import { Alert, AlertButton, Dimensions } from 'react-native';
+import GetLocation, { Location } from 'react-native-get-location';
+import { request } from 'react-native-permissions';
 import DeviceInfo from 'react-native-version-info';
+import { LocationService } from '../models/commonModels';
 
 export const window = Dimensions.get("window");
 
@@ -93,6 +97,37 @@ export const showAlert = (
     });
   }
   if (arrButtons.length > 0) {
-    Alert.alert(title, message, arrButtons, {cancelable: isCancelable});
+    Alert.alert(title, message, arrButtons, { cancelable: isCancelable });
   }
 };
+
+export async function requestLocationPermission(permissions: any, permissionsName: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    request(permissions).then(result => {
+      if (result === 'granted') {
+        return resolve('granted');
+      } else {
+        return reject(permissionsName + ' permission not Granted. Go to settings to enable it');
+      }
+    }).catch(e => {
+      console.log(e);
+      return reject(permissionsName + ' permission not Granted. Go to settings to enable it');
+    });
+
+  })
+}
+
+export const getLocation = (timeout: number) => {
+  return new Promise((resolve, reject) => {
+    GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: timeout,
+    })
+      .then(location => {
+        resolve(location);
+      })
+      .catch(error => {
+        reject(error.message);
+      });
+  });
+}

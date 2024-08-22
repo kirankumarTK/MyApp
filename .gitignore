@@ -75,3 +75,5 @@ yarn-error.log
 .env
 android/app/src/main/assets/database/ivycpg_v19.sqlite
 smartsell/assets/database/ivycpg_v19.sqlite
+android/app/src/main/assets/www/ivycpg_v19.sqlite
+smartsell/assets/www/ivycpg_v19.sqlite
