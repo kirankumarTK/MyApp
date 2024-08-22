@@ -3,7 +3,7 @@ import AppColor from './AppColor';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
-const appIconsize = 20;
+const appIconsize = 25;
 const appElevation = 2;
 const titleFontSize = 20;
 const buttonFontSize = 15;
@@ -81,10 +81,16 @@ const style = StyleSheet.create({
     color: AppColor.textColor,
     fontSize: titleFontSize,
     fontWeight: 'bold',
+    alignSelf : 'flex-start',
+    flex: 1
   },
   Drawer_View : {
-   padding : 10
-   
+   padding : 10,
+   flexDirection : 'row'
+  },
+  Drawer_Icon : {
+   flex : 0.2,
+   alignSelf : 'center'
   },
 });
 

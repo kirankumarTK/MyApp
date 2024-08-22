@@ -1,17 +1,18 @@
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import StatusView from '../../screens/Status/StatusView';
-import {window} from '../../Commons/utilities';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import AppColor from '../../AppThemes/AppColor';
 import Appstlye from '../../AppThemes/Appstlye';
+import { MENU_DASH_KPI, MENU_PLANNING, window } from '../../Commons/utilities';
+import { DrawerNavigationModel } from '../../models/commonModels';
+import RoutePlanningView from '../../screens/RoutePlanning/RoutePlanningView';
+import StatusView from '../../screens/Status/StatusView';
 import HomeDrawerView from './HomeDrawerView';
-import { DrawerNavigationModel, HhtMenuMasterBO } from '../../models/commonModels';
+import { DrawerStackPramsList, RootStackPramsList } from './RootStackPramsList';
 
-const Drawer = createDrawerNavigator();
-
+const Drawer = createDrawerNavigator<DrawerStackPramsList>();
 const Drawernavigation : React.FC<DrawerNavigationModel> = ({homeMenuList}) => {
   return (
     <Drawer.Navigator
-      initialRouteName="Status"
+      initialRouteName= {MENU_DASH_KPI}
       detachInactiveScreens={true}
       screenOptions={{
         drawerPosition: 'left',
@@ -23,11 +24,12 @@ const Drawernavigation : React.FC<DrawerNavigationModel> = ({homeMenuList}) => {
           elevation: Appstlye.appElevation,
         },
         drawerStyle: {
-          width: window.width * 0.78,
+          width: window.width * 0.65,
         },
       }}
       drawerContent={props => <HomeDrawerView props={props} homeMenuList={(homeMenuList)}/>}>
-      <Drawer.Screen name="Status" component={StatusView} />
+      <Drawer.Screen name={MENU_DASH_KPI} component={StatusView} />
+      <Drawer.Screen name={MENU_PLANNING} component={RoutePlanningView} />
     </Drawer.Navigator>
   );
 };

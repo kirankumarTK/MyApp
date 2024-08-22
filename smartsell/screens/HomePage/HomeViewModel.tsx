@@ -22,7 +22,7 @@ export const HomeViewModel = () => {
 
   const getHomeMenuList = () => {
     const homeMenuList: Array<HhtMenuMasterBO> = [];
-    let query = "Select * from HhtMenuMaster where MenuType = 'HOME_MENU'";
+    let query = "Select * from HhtMenuMaster where MenuType = 'HOME_MENU' AND Flag = '1' Order by MNumber";
     AppDatabase.executeFetch(query)
       .then((result: Array<HhtMenuMasterBO>) => {
         setMenulist(result);

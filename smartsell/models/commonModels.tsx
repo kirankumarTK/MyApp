@@ -20,4 +20,5 @@ export interface HomeDrawerModel {
 
 export interface HhtMenuMasterBOModel {
   item : HhtMenuMasterBO;
+  props: DrawerContentComponentProps;
 }

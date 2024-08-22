@@ -4,6 +4,13 @@ import DeviceInfo from 'react-native-version-info';
 
 export const window = Dimensions.get("window");
 
+export const MENU_DASH_KPI = 'MENU_DASH_KPI';
+export const MENU_SURVEY_SW = 'MENU_SURVEY_SW';
+export const MENU_TASK_NEW = 'MENU_TASK_NEW';
+export const MENU_PLANNING = 'MENU_PLANNING';
+export const MENU_VISIT = 'MENU_VISIT';
+export const MENU_SYNC = 'MENU_SYNC';
+export const MENU_POSM_AST = 'MENU_POSM_AST';
 
 export const getAppversion = () => {
   return DeviceInfo.appVersion;
