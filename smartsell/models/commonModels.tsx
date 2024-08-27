@@ -1,5 +1,5 @@
 import { DrawerContentComponentProps } from "@react-navigation/drawer";
-import { Location } from "react-native-get-location";
+import { GeoPosition } from "react-native-geolocation-service";
 
 export interface HhtMenuMasterBO {
   HHTCode: string;
@@ -10,7 +10,7 @@ export interface HhtMenuMasterBO {
   lang: string;
   MenuType: string;
 }
-export type DrawerNavigationModel {
+export type DrawerNavigationModel = {
   homeMenuList: HhtMenuMasterBO[];
 }
 
@@ -25,7 +25,7 @@ export interface HhtMenuMasterBOModel {
 }
 
 export interface LocationService {
-  location: any;
+  location: GeoPosition;
   id: number;
   msg: string;
 }

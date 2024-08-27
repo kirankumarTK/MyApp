@@ -1,12 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState } from 'react';
-import { Alert, AlertButton, Dimensions } from 'react-native';
-import GetLocation, { Location } from 'react-native-get-location';
-import { request } from 'react-native-permissions';
+import {Alert, AlertButton, Dimensions} from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
+import {request} from 'react-native-permissions';
 import DeviceInfo from 'react-native-version-info';
-import { LocationService } from '../models/commonModels';
+import {LocationService} from '../models/commonModels';
 
-export const window = Dimensions.get("window");
+export const window = Dimensions.get('window');
 
 export const MENU_DASH_KPI = 'MENU_DASH_KPI';
 export const MENU_SURVEY_SW = 'MENU_SURVEY_SW';
@@ -97,37 +96,94 @@ export const showAlert = (
     });
   }
   if (arrButtons.length > 0) {
-    Alert.alert(title, message, arrButtons, { cancelable: isCancelable });
+    Alert.alert(title, message, arrButtons, {cancelable: isCancelable});
   }
 };
 
-export async function requestLocationPermission(permissions: any, permissionsName: string): Promise<any> {
+export async function requestLocationPermission(
+  permissions: any,
+  permissionsName: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
-    request(permissions).then(result => {
-      if (result === 'granted') {
-        return resolve('granted');
-      } else {
-        return reject(permissionsName + ' permission not Granted. Go to settings to enable it');
-      }
-    }).catch(e => {
-      console.log(e);
-      return reject(permissionsName + ' permission not Granted. Go to settings to enable it');
-    });
-
-  })
+    request(permissions)
+      .then(result => {
+        if (result === 'granted') {
+          return resolve('granted');
+        } else {
+          return reject(
+            permissionsName +
+              ' permission not Granted. Go to settings to enable it',
+          );
+        }
+      })
+      .catch(e => {
+        console.log(e);
+        return reject(
+          permissionsName +
+            ' permission not Granted. Go to settings to enable it',
+        );
+      });
+  });
 }
 
 export const getLocation = (timeout: number) => {
   return new Promise((resolve, reject) => {
-    GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      timeout: timeout,
-    })
-      .then(location => {
-        resolve(location);
-      })
-      .catch(error => {
-        reject(error.message);
-      });
+    Geolocation.getCurrentPosition(
+      position => {
+        resolve(position);
+      },
+      error => {
+        reject(error);
+      },
+      {
+        timeout: timeout,
+        maximumAge: 50000,
+        enableHighAccuracy: true,
+        accuracy: {android: 'high', ios: 'best'},
+      },
+    );
   });
-}
+};
+
+export const getLocationListener = (
+  frequency: number,
+): Promise<string | LocationService> => {
+  return new Promise((resolve, reject) => {
+    const id: number = Geolocation.watchPosition(
+      position => {
+        if (!position.mocked) {
+          const location: LocationService = {
+            location: position,
+            id: id,
+            msg: '200',
+          };
+          console.log(position);
+          resolve(location);
+        } else {
+          const location: LocationService = {
+            location: position,
+            id: id,
+            msg: 'Mocked location is truned on',
+          };
+          console.log(position);
+          reject(location);
+        }
+      },
+      error => {
+        console.log(error);
+        reject(error.message);
+      },
+      {
+        enableHighAccuracy: true,
+        accuracy: {android: 'high', ios: 'best'},
+        interval: frequency,
+        distanceFilter : 1,
+      },
+    );
+  });
+};
+
+export const clearGeoWatcher = (id: number) => {
+  Geolocation.clearWatch(id);
+  Geolocation.stopObserving();
+};

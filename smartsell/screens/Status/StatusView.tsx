@@ -1,52 +1,80 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Text } from 'react-native';
-import { getLocation, requestLocationPermission, showAlert } from '../../Commons/utilities';
-import { PERMISSIONS } from 'react-native-permissions';
-import { Location } from 'react-native-get-location';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useCallback, useState} from 'react';
+import {Text} from 'react-native';
+import {GeoPosition} from 'react-native-geolocation-service';
+import {PERMISSIONS} from 'react-native-permissions';
+import Appstlye from '../../AppThemes/Appstlye';
+import {
+  clearGeoWatcher,
+  getLocationListener,
+  requestLocationPermission,
+  showAlert,
+} from '../../Commons/utilities';
+import {LocationService} from '../../models/commonModels';
 const StatusView = () => {
-  const [location, setLocation] = useState<Location>();
-  let timerID: any;
-
+  const [location, setLocation] = useState<GeoPosition>();
+  let watchId: number;
 
   function callLocation() {
-    requestLocationPermission(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION, 'Location').then(response => {
-      setTimer();
-    }).catch(error => {
-      console.log(error);
-      showAlert('Permission required', error, 'ok');
-    })
-  }
-
-  const setTimer = () => {
-    const id = setInterval(() => {
-      getLocation(2000).then(result => {
-        setLocation(result as Location);
-        console.log(result);
-
-      }).catch(e => {
-        console.log(e);
+    requestLocationPermission(
+      PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      'Location',
+    )
+      .then(response => {
+        getCurrentLocation();
       })
-    }, 5000);
-    console.log(id);
-    timerID = id;
+      .catch(error => {
+        console.log(error);
+        showAlert('Permission required', error, 'ok');
+      });
   }
-  //to identify screen is visible to user 
+
+  const getCurrentLocation = () => {
+    getLocationListener(1000)
+      .then(geoLocation => {
+        const position = geoLocation as LocationService;
+        setLocation(position.location);
+        watchId = position.id;
+      })
+      .catch(error => {
+        let msg: string;
+        if (typeof error !== 'string') {
+          const position = error as LocationService;
+          msg = position.msg;
+          watchId = position.id;
+        } else {
+          msg = error;
+        }
+        showAlert(
+          'Location Alert',
+          msg,
+          '',
+          '',
+          '',
+          undefined,
+          undefined,
+          undefined,
+          false,
+        );
+      });
+  };
+  //to identify screen is visible to user
   useFocusEffect(
     useCallback(() => {
       //Screen is focused
       callLocation();
       return () => {
         // Screen is unfocused
-        clearInterval(timerID);
+        clearGeoWatcher(watchId);
       };
-    }, [])
+    }, []),
   );
-
 
   return (
     <React.Fragment>
-      <Text>{location?.accuracy}</Text>
+      <Text style={Appstlye.style.Drawer_Text_View}>
+        {location?.coords.latitude}
+      </Text>
     </React.Fragment>
   );
 };
