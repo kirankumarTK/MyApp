@@ -1,5 +1,8 @@
-import { DrawerContentComponentProps } from "@react-navigation/drawer";
-import { GeoPosition } from "react-native-geolocation-service";
+import {
+  DrawerContentComponentProps,
+  DrawerHeaderProps,
+} from '@react-navigation/drawer';
+import {GeoPosition} from 'react-native-geolocation-service';
 
 export interface HhtMenuMasterBO {
   HHTCode: string;
@@ -12,7 +15,7 @@ export interface HhtMenuMasterBO {
 }
 export type DrawerNavigationModel = {
   homeMenuList: HhtMenuMasterBO[];
-}
+};
 
 export interface HomeDrawerModel {
   props: DrawerContentComponentProps;
@@ -28,4 +31,29 @@ export interface LocationService {
   location: GeoPosition;
   id: number;
   msg: string;
+}
+
+export interface AppbarModel {
+  props: DrawerHeaderProps;
+}
+
+export interface CommonDialogModel {
+  visible: boolean;
+  title: string;
+  msg: string;
+  list: Array<any>;
+  onClose: () => void;
+  onConform: (result : any | undefined) => void;
+  positiveBtnTxt: string;
+  negativeBtnTxt: string;
+}
+
+export interface LanguageModel {
+  ListCode: string;
+  ListName: string;
+}
+export interface RadioModel {
+  selected: boolean;
+  onPress: () => void;
+  data: LanguageModel;
 }

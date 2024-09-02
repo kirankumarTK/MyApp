@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import AppColor from './AppColor';
 
 const screenHeight = Dimensions.get('window').height;
@@ -82,15 +82,71 @@ const style = StyleSheet.create({
     fontSize: titleFontSize,
     fontWeight: 'bold',
     marginStart: 10,
-
   },
   Drawer_View: {
     padding: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   Drawer_Icon: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+  },
+  AppBar_view: {
+    backgroundColor: AppColor.secondaryColor,
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  title_view: {
+    fontSize: titleFontSize,
+    color: AppColor.white,
+    fontWeight: 'bold',
+  },
+  absolute_start: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    padding: 20,
+  },
+  dialog_bg: {
+    backgroundColor: AppColor.black,
+    opacity: 0.7,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dialog: {
+    backgroundColor: AppColor.white,
+    width: '70%',
+    borderRadius: 10,
+    padding: 20,
+  },
+  dialog_list: {
+    marginTop: 20,
+    marginStart: 10,
+    height: 100,
+  },
+  dialog_button_container: {
+    position: 'absolute',
+    bottom: 0,
+    end: 0,
+    flexDirection: 'row',
+  },
+  dialog_button_ok: {
+    color: AppColor.colorPrimaryDark,
+    fontSize: buttonFontSize,
+    margin: 15,
+    elevation: appElevation,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
+  dialog_button_cancel: {
+    color: AppColor.black,
+    fontSize: buttonFontSize,
+    margin: 15,
+    elevation: appElevation,
+    textTransform: 'uppercase',
   },
 });
 
-export default { style, screenHeight, screenWidth, appIconsize, appElevation };
+export default {style, screenHeight, screenWidth, appIconsize, appElevation};

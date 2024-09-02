@@ -7,7 +7,9 @@ const AppColor = {
   cardBackgroundcolor: '#ffffff',
   shadowcolor: '#faf7f7',
   iconColor : '#b3b3cc',
-  buttonTextColor : '#ffffff'
+  buttonTextColor : '#ffffff',
+  white : '#ffffff',
+  black : '#000000',
 };
 
 export default AppColor;

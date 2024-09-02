@@ -10,13 +10,20 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Appstlye from '../../AppThemes/Appstlye';
-import translation from '../../Commons/i18n';
 import {getBuildversion} from '../../Commons/utilities';
+import CommonDialog from '../../Components/Dialogs/CommonDIalog';
 import {LoginViewModel} from './LoginViewModel';
 
 const LoginView = () => {
   const {t} = useTranslation();
-  const {onLoginPress} = LoginViewModel(t);
+  const {
+    onLoginPress,
+    isSettingVisible,
+    onSettingPressed,
+    languageList,
+    onSettingPostive,
+    onSettingNegative,
+  } = LoginViewModel(t);
 
   return (
     <React.Fragment>
@@ -32,6 +39,7 @@ const LoginView = () => {
             name="settings"
             size={Appstlye.appIconsize}
             style={Appstlye.style.settingIcon}
+            onPress={() => onSettingPressed()}
           />
 
           <TouchableOpacity
@@ -52,6 +60,17 @@ const LoginView = () => {
           </View>
         </View>
       </ImageBackground>
+
+      <CommonDialog
+        title="Choose Language"
+        msg=""
+        visible={isSettingVisible}
+        onClose={onSettingNegative}
+        onConform={onSettingPostive}
+        list={languageList}
+        negativeBtnTxt='Cancel'
+        positiveBtnTxt='Apply'
+      />
     </React.Fragment>
   );
 };

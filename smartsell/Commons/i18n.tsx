@@ -11,8 +11,8 @@ export interface Translation {
 function initTranslation() {
   i18next.use(initReactI18next).init({
     compatibilityJSON: 'v3',
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: 'ar',
+    fallbackLng: 'ar',
     debug: false,
     interpolation: {
       escapeValue: false,

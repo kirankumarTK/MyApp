@@ -3,7 +3,8 @@ import {Alert, AlertButton, Dimensions} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import {request} from 'react-native-permissions';
 import DeviceInfo from 'react-native-version-info';
-import {LocationService} from '../models/commonModels';
+import {LanguageModel, LocationService} from '../models/commonModels';
+import AppDatabase from './DataBaseHelper';
 
 export const window = Dimensions.get('window');
 
@@ -177,7 +178,7 @@ export const getLocationListener = (
         enableHighAccuracy: true,
         accuracy: {android: 'high', ios: 'best'},
         interval: frequency,
-        distanceFilter : 1,
+        distanceFilter: 1,
       },
     );
   });
@@ -186,4 +187,18 @@ export const getLocationListener = (
 export const clearGeoWatcher = (id: number) => {
   Geolocation.clearWatch(id);
   Geolocation.stopObserving();
+};
+
+export const getLanguageList = (): Promise<string | Array<LanguageModel>> => {
+  return new Promise((resolve, reject) => {
+    AppDatabase.executeFetch(
+      "Select listCode,listName from StandardListMaster where ListType = 'LANGUAGE_TYPE'",
+    )
+      .then(result => {
+        resolve(result as Array<LanguageModel>);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 };

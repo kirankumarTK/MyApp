@@ -7,6 +7,7 @@ import RoutePlanningView from '../../screens/RoutePlanning/RoutePlanningView';
 import StatusView from '../../screens/Status/StatusView';
 import HomeDrawerView from './HomeDrawerView';
 import { DrawerStackPramsList, RootStackPramsList } from './RootStackPramsList';
+import Appbar from './Appbar';
 
 const Drawer = createDrawerNavigator<DrawerStackPramsList>();
 const Drawernavigation : React.FC<DrawerNavigationModel> = ({homeMenuList}) => {
@@ -18,6 +19,7 @@ const Drawernavigation : React.FC<DrawerNavigationModel> = ({homeMenuList}) => {
         drawerPosition: 'left',
         drawerType: 'front',
         headerShown: true,
+        header : (props) => <Appbar props = {props}/>,
         headerTintColor: AppColor.buttonTextColor,
         headerStyle: {
           backgroundColor: AppColor.secondaryColor,
