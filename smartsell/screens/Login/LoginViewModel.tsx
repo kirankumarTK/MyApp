@@ -1,8 +1,9 @@
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {TFunction} from 'i18next';
-import {useCallback, useEffect, useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { TFunction } from 'i18next';
+import { useCallback, useEffect, useState } from 'react';
 import AysncKeys from '../../Commons/AsyncKeys';
+import translation from '../../Commons/i18n';
 import {
   getAppversion,
   getAsyncData,
@@ -10,9 +11,10 @@ import {
   showAlert,
   storeAsyncData,
 } from '../../Commons/utilities';
-import {RootStackPramsList} from '../../Components/Navigations/RootStackPramsList';
-import {LanguageModel} from '../../models/commonModels';
-import translation from '../../Commons/i18n';
+import { RootStackPramsList } from '../../Components/Navigations/RootStackPramsList';
+import { LanguageModel } from '../../models/commonModels';
+import { useAppDispatch } from '../../redux/hooks';
+import { setSelectedLanguage } from '../../redux/LanguageSlice';
 
 export const LoginViewModel = (t: TFunction<'translation', undefined>) => {
   const navigation =
@@ -22,10 +24,15 @@ export const LoginViewModel = (t: TFunction<'translation', undefined>) => {
 
   const [languageList, setLanguage] = useState<Array<LanguageModel>>([]);
 
+  const dispatch = useAppDispatch();
+
+ 
+
   useEffect(() => {
     getAsyncData(AysncKeys.languageCode)
       .then(code => {
         translation.switchLanguage(code);
+        dispatch(setSelectedLanguage(code));
       })
       .catch(error => {});
     isAppavailLableForUpdate().then(isUpdateAvailable => {
@@ -92,6 +99,7 @@ export const LoginViewModel = (t: TFunction<'translation', undefined>) => {
     storeAsyncData(AysncKeys.languageCode, languageCode)
       .then(result => {
         translation.switchLanguage(languageCode);
+        dispatch(setSelectedLanguage(languageCode));
         showDialog(false);
       })
       .catch(error => {
