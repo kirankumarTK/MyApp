@@ -1,8 +1,8 @@
-import {useFocusEffect} from '@react-navigation/native';
-import React, {useCallback, useState} from 'react';
-import {Text} from 'react-native';
-import {GeoPosition} from 'react-native-geolocation-service';
-import {PERMISSIONS} from 'react-native-permissions';
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useState } from 'react';
+import { Text } from 'react-native';
+import { GeoPosition } from 'react-native-geolocation-service';
+import { PERMISSIONS } from 'react-native-permissions';
 import Appstlye from '../../AppThemes/Appstlye';
 import {
   clearGeoWatcher,
@@ -10,7 +10,7 @@ import {
   requestLocationPermission,
   showAlert,
 } from '../../Commons/utilities';
-import {LocationService} from '../../models/commonModels';
+import { LocationService } from '../../models/commonModels';
 const StatusView = () => {
   const [location, setLocation] = useState<GeoPosition>();
   let watchId: number;

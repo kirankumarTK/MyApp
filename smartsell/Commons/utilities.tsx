@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert, AlertButton, Dimensions} from 'react-native';
+import { Alert, AlertButton, Dimensions } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import {request} from 'react-native-permissions';
+import { request } from 'react-native-permissions';
 import DeviceInfo from 'react-native-version-info';
-import {LanguageModel, LocationService} from '../models/commonModels';
+import { LanguageModel, LocationService } from '../models/commonModels';
 import AppDatabase from './DataBaseHelper';
 
 export const window = Dimensions.get('window');
@@ -97,7 +97,7 @@ export const showAlert = (
     });
   }
   if (arrButtons.length > 0) {
-    Alert.alert(title, message, arrButtons, {cancelable: isCancelable});
+    Alert.alert(title, message, arrButtons, { cancelable: isCancelable });
   }
 };
 
@@ -113,7 +113,7 @@ export async function requestLocationPermission(
         } else {
           return reject(
             permissionsName +
-              ' permission not Granted. Go to settings to enable it',
+            ' permission not Granted. Go to settings to enable it',
           );
         }
       })
@@ -121,7 +121,7 @@ export async function requestLocationPermission(
         console.log(e);
         return reject(
           permissionsName +
-            ' permission not Granted. Go to settings to enable it',
+          ' permission not Granted. Go to settings to enable it',
         );
       });
   });
@@ -129,6 +129,7 @@ export async function requestLocationPermission(
 
 export const getLocation = (timeout: number) => {
   return new Promise((resolve, reject) => {
+
     Geolocation.getCurrentPosition(
       position => {
         resolve(position);
@@ -140,7 +141,7 @@ export const getLocation = (timeout: number) => {
         timeout: timeout,
         maximumAge: 50000,
         enableHighAccuracy: true,
-        accuracy: {android: 'high', ios: 'best'},
+        accuracy: { android: 'high', ios: 'best' },
       },
     );
   });
@@ -176,7 +177,7 @@ export const getLocationListener = (
       },
       {
         enableHighAccuracy: true,
-        accuracy: {android: 'high', ios: 'best'},
+        accuracy: { android: 'high', ios: 'best' },
         interval: frequency,
         distanceFilter: 1,
       },

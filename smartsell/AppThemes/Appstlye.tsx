@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import AppColor from './AppColor';
 
 const screenHeight = Dimensions.get('window').height;
@@ -147,6 +147,10 @@ const style = StyleSheet.create({
     elevation: appElevation,
     textTransform: 'uppercase',
   },
+  map: {
+    height: '100%',
+    width: '100%'
+  }
 });
 
-export default {style, screenHeight, screenWidth, appIconsize, appElevation};
+export default { style, screenHeight, screenWidth, appIconsize, appElevation };

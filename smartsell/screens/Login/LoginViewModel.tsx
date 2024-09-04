@@ -26,7 +26,7 @@ export const LoginViewModel = (t: TFunction<'translation', undefined>) => {
 
   const dispatch = useAppDispatch();
 
- 
+
 
   useEffect(() => {
     getAsyncData(AysncKeys.languageCode)
@@ -34,7 +34,7 @@ export const LoginViewModel = (t: TFunction<'translation', undefined>) => {
         translation.switchLanguage(code);
         dispatch(setSelectedLanguage(code));
       })
-      .catch(error => {});
+      .catch(error => { });
     isAppavailLableForUpdate().then(isUpdateAvailable => {
       if (isUpdateAvailable) {
         showAlert(
