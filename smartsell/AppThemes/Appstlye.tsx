@@ -165,7 +165,7 @@ const style = StyleSheet.create({
     backgroundColor: AppColor.white,
     elevation: appElevation,
     margin: 5,
-    marginTop: 10,
+    marginTop: 2,
     padding: 10,
   },
   margin_top: {

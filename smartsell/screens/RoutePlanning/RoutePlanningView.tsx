@@ -6,6 +6,7 @@ import MapviewComponent from '../../Components/MapviewComponent';
 import StoreList from '../../Components/StoreList';
 import { RoutePlanningViewModel } from './RoutePlanningViewModel';
 import AppColor from '../../AppThemes/AppColor';
+import PieChartComponent from '../../Components/Chart/PieChartComponent';
 const RoutePlanningView = () => {
   const {retailerMasters, getCurrentDate, isEnabled, toggleSwitch} =
     RoutePlanningViewModel();
@@ -37,6 +38,7 @@ const RoutePlanningView = () => {
         </View>
       </View>
       {isEnabled && <MapviewComponent mapStyle={Appstlye.style.map} /> }
+      <PieChartComponent/>
       <FlatList
         data={retailerMasters}
         style={Appstlye.style.storeList}
