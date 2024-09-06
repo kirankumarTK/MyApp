@@ -1,10 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import Appstlye from '../AppThemes/Appstlye';
-import {Text} from 'react-native';
-import {RetailerMasterModel} from '../models/commonModels';
+import {PieValue, RetailerMasterModel} from '../models/commonModels';
+import RoutePieChart from '../screens/RoutePlanning/RoutePieChart';
 
-const StoreList: React.FC<RetailerMasterModel> = ({retailerBo}) => {
+const StoreList: React.FC<RetailerMasterModel> = React.memo(({retailerBo}) => {
+  const data : Array<PieValue> = [{title: 'VGP', value: 50}, {title: 'DGP', value: 10},{title: 'IGP', value: 50},{title: 'OOS', value: 70}] ;
   return (
     <View style={Appstlye.style.list_item}>
       <View style={Appstlye.style.retailer_details_view}>
@@ -15,12 +16,16 @@ const StoreList: React.FC<RetailerMasterModel> = ({retailerBo}) => {
         </Text>
       </View>
       <View style={Appstlye.style.retailer_score_view}>
-        <Text >
-            Need load pie chart 
-        </Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View style={{flexDirection: 'row'}}>
+            {data.map((value,index) => {
+              return <RoutePieChart key={index}  title= {value.title} value={value.value}/>;
+            })}
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
-};
+});
 
 export default StoreList;

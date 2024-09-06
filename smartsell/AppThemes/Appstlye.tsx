@@ -175,11 +175,11 @@ const style = StyleSheet.create({
     padding: 5,
   },
   retailer_details_view: {
-    flex: 0.9,
+    flex: 0.8,
     marginRight: 20,
   },
   retailer_score_view: {
-    flex: 1.1,
+    flex: 1.2,
     marginRight: 5,
   },
   Store_Name: {

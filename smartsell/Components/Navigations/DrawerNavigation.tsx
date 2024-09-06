@@ -19,6 +19,7 @@ const Drawernavigation : React.FC<DrawerNavigationModel> = ({homeMenuList}) => {
         drawerPosition: 'left',
         drawerType: 'front',
         headerShown: true,
+        swipeEnabled : false,
         header : (props) => <Appbar props = {props}/>,
         headerTintColor: AppColor.buttonTextColor,
         headerStyle: {

@@ -2,7 +2,7 @@ import {
   DrawerContentComponentProps,
   DrawerHeaderProps,
 } from '@react-navigation/drawer';
-import {StyleProp, ViewStyle} from 'react-native';
+import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 import {GeoPosition} from 'react-native-geolocation-service';
 
 export interface HhtMenuMasterBO {
@@ -69,9 +69,22 @@ export interface RetailerMasterBO {
   Address1: string;
   Latitude: string;
   Longitude: string;
-  TaskCount : number;
+  TaskCount: number;
 }
 
 export interface RetailerMasterModel {
-  retailerBo : RetailerMasterBO
+  retailerBo: RetailerMasterBO;
+}
+export interface PieChartBO {
+  value: number;
+  radius: number;
+  progressValueColor: string;
+  title: string;
+  titleColor: string;
+  titleStyle: TextStyle;
+}
+
+export interface PieValue {
+  title: string;
+  value: number;
 }

@@ -10,6 +10,7 @@ const AppColor = {
   buttonTextColor : '#ffffff',
   white : '#ffffff',
   black : '#000000',
+  red : '#FF0000'
 };
 
 export default AppColor;

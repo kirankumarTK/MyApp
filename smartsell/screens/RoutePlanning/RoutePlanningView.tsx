@@ -1,12 +1,11 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { FlatList, Switch, Text, View } from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {FlatList, Switch, Text, View} from 'react-native';
 import Appstlye from '../../AppThemes/Appstlye';
 import MapviewComponent from '../../Components/MapviewComponent';
 import StoreList from '../../Components/StoreList';
-import { RoutePlanningViewModel } from './RoutePlanningViewModel';
+import {RoutePlanningViewModel} from './RoutePlanningViewModel';
 import AppColor from '../../AppThemes/AppColor';
-import PieChartComponent from '../../Components/Chart/PieChartComponent';
 const RoutePlanningView = () => {
   const {retailerMasters, getCurrentDate, isEnabled, toggleSwitch} =
     RoutePlanningViewModel();
@@ -29,7 +28,10 @@ const RoutePlanningView = () => {
         </View>
         <View style={Appstlye.style.retailer_score_view}>
           <Switch
-            trackColor={{false: AppColor.shadowcolor, true: AppColor.secondaryColor}}
+            trackColor={{
+              false: AppColor.shadowcolor,
+              true: AppColor.secondaryColor,
+            }}
             thumbColor={isEnabled ? AppColor.secondaryColor : AppColor.white}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
@@ -37,11 +39,15 @@ const RoutePlanningView = () => {
           />
         </View>
       </View>
-      {isEnabled && <MapviewComponent mapStyle={Appstlye.style.map} /> }
-      <PieChartComponent/>
+      {isEnabled && <MapviewComponent mapStyle={Appstlye.style.map} />}
+
       <FlatList
         data={retailerMasters}
         style={Appstlye.style.storeList}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={10}
+        initialNumToRender={10}
+        keyExtractor={(item, index) => item.RetailerID}
         renderItem={({item}) => <StoreList retailerBo={item} />}
       />
     </React.Fragment>
