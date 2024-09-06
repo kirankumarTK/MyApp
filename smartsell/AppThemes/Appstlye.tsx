@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import AppColor from './AppColor';
 
 const screenHeight = Dimensions.get('window').height;
@@ -147,10 +147,58 @@ const style = StyleSheet.create({
     elevation: appElevation,
     textTransform: 'uppercase',
   },
+  mapContainer: {
+    flex: 1,
+    backgroundColor: AppColor.secondaryColor,
+  },
   map: {
-    height: '100%',
-    width: '100%'
+    flex: 0.8,
+  },
+  storeList: {
+    flex: 1.2,
+  },
+  list_item: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: AppColor.white,
+    elevation: appElevation,
+    margin: 5,
+    marginTop: 10,
+    padding: 10,
+  },
+  margin_top: {
+    marginTop: 5,
+  },
+  padding_default: {
+    padding: 5,
+  },
+  retailer_details_view: {
+    flex: 0.9,
+    marginRight: 20,
+  },
+  retailer_score_view: {
+    flex: 1.1,
+    marginRight: 5,
+  },
+  Store_Name: {
+    color: AppColor.textColor,
+    fontSize: titleFontSize,
+    fontWeight: 'bold',
+  },
+  todayRouteSwitchContainer: {
+    paddingTop : 10,
+    flexDirection : 'row',
+    alignItems : 'center',
+  },
+  app_small_text_gray: {
+    fontSize: 10,
+    marginStart : 10,
+    marginTop : 5,
+    fontWeight: 'bold',
+    
   }
 });
 
-export default { style, screenHeight, screenWidth, appIconsize, appElevation };
+export default {style, screenHeight, screenWidth, appIconsize, appElevation};

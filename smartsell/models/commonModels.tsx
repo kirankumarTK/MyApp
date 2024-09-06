@@ -2,6 +2,7 @@ import {
   DrawerContentComponentProps,
   DrawerHeaderProps,
 } from '@react-navigation/drawer';
+import {StyleProp, ViewStyle} from 'react-native';
 import {GeoPosition} from 'react-native-geolocation-service';
 
 export interface HhtMenuMasterBO {
@@ -43,7 +44,7 @@ export interface CommonDialogModel {
   msg: string;
   list: Array<any>;
   onClose: () => void;
-  onConform: (result : any | undefined) => void;
+  onConform: (result: any | undefined) => void;
   positiveBtnTxt: string;
   negativeBtnTxt: string;
 }
@@ -56,4 +57,21 @@ export interface RadioModel {
   selected: boolean;
   onPress: () => void;
   data: LanguageModel;
+}
+
+export interface MapviewComponentModel {
+  mapStyle: StyleProp<ViewStyle>;
+}
+
+export interface RetailerMasterBO {
+  RetailerID: string;
+  RetailerName: string;
+  Address1: string;
+  Latitude: string;
+  Longitude: string;
+  TaskCount : number;
+}
+
+export interface RetailerMasterModel {
+  retailerBo : RetailerMasterBO
 }

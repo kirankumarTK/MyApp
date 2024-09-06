@@ -8,7 +8,16 @@ import {
   HomeDrawerModel,
 } from '../../models/commonModels';
 import AppColor from '../../AppThemes/AppColor';
-import { MENU_DASH_KPI, MENU_PLANNING, MENU_POSM_AST, MENU_SURVEY_SW, MENU_SYNC, MENU_TASK_NEW, MENU_VISIT } from '../../Commons/utilities';
+import {
+  MENU_DASH_KPI,
+  MENU_PLANNING,
+  MENU_POSM_AST,
+  MENU_SURVEY_SW,
+  MENU_SYNC,
+  MENU_TASK_NEW,
+  MENU_VISIT,
+} from '../../Commons/utilities';
+import { CommonActions } from '@react-navigation/native';
 
 const HomeDrawerView: React.FC<HomeDrawerModel> = ({props, homeMenuList}) => {
   return (
@@ -16,14 +25,22 @@ const HomeDrawerView: React.FC<HomeDrawerModel> = ({props, homeMenuList}) => {
       <View style={Appstlye.style.DrawerProfile_BG}></View>
       <FlatList
         data={homeMenuList}
-        renderItem={({item, index}) => <MenuView item={item} props={props}  />}></FlatList>
+        renderItem={({item, index}) => (
+          <MenuView item={item} props={props} />
+        )}></FlatList>
     </React.Fragment>
   );
 };
 
-const MenuView: React.FC<HhtMenuMasterBOModel> = ({item,props}) => {
+const MenuView: React.FC<HhtMenuMasterBOModel> = ({item, props}) => {
   return (
-    <TouchableOpacity style={Appstlye.style.Drawer_View} onPress={() => props.navigation.navigate(item.HHTCode)} >
+    <TouchableOpacity
+      style={Appstlye.style.Drawer_View}
+      onPress={() => {
+        //props.navigation.navigate(item.HHTCode);
+        //this is called beacause we need to re render screen everytime 
+        props.navigation.dispatch(CommonActions.reset({index : 0, routes : [{name : item.HHTCode}]}))
+      }}>
       <Icon
         name={getIcon(item.HHTCode)}
         size={Appstlye.appIconsize}

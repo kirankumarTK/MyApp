@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from './CommonReducer';
+import logger from "./logger";
 
 export const store = configureStore({
     reducer : reducer,
-    
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({ serializableCheck: false }).concat(logger),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

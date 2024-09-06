@@ -1,24 +1,47 @@
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { useTranslation } from 'react-i18next';
+import { FlatList, Switch, Text, View } from 'react-native';
 import Appstlye from '../../AppThemes/Appstlye';
-import { useAppSelector } from '../../redux/hooks';
+import MapviewComponent from '../../Components/MapviewComponent';
+import StoreList from '../../Components/StoreList';
+import { RoutePlanningViewModel } from './RoutePlanningViewModel';
+import AppColor from '../../AppThemes/AppColor';
 const RoutePlanningView = () => {
-  const selectedLanguage = useAppSelector(
-    state => state.languageSlice.languageCode,
-  );
+  const {retailerMasters, getCurrentDate, isEnabled, toggleSwitch} =
+    RoutePlanningViewModel();
+  const {t} = useTranslation();
+
   return (
     <React.Fragment>
-      <MapView
-        provider={PROVIDER_GOOGLE}
-        style={Appstlye.style.map}
-        region={{
-          latitude: 37.78826,
-          longitude: -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
-        }}
-      >
-      </MapView>
+      <View
+        style={[
+          Appstlye.style.padding_default,
+          Appstlye.style.todayRouteSwitchContainer,
+        ]}>
+        <View style={Appstlye.style.retailer_details_view}>
+          <Text style={Appstlye.style.Drawer_Text_View}>
+            {t('today') + ' ' + getCurrentDate()}
+          </Text>
+          <Text style={Appstlye.style.app_small_text_gray}>
+            {t('store_visit')}
+          </Text>
+        </View>
+        <View style={Appstlye.style.retailer_score_view}>
+          <Switch
+            trackColor={{false: AppColor.shadowcolor, true: AppColor.secondaryColor}}
+            thumbColor={isEnabled ? AppColor.secondaryColor : AppColor.white}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
+      </View>
+      {isEnabled && <MapviewComponent mapStyle={Appstlye.style.map} /> }
+      <FlatList
+        data={retailerMasters}
+        style={Appstlye.style.storeList}
+        renderItem={({item}) => <StoreList retailerBo={item} />}
+      />
     </React.Fragment>
   );
 };
