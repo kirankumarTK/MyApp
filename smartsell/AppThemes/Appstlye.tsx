@@ -188,17 +188,45 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   todayRouteSwitchContainer: {
-    paddingTop : 10,
-    flexDirection : 'row',
-    alignItems : 'center',
+    paddingTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   app_small_text_gray: {
     fontSize: 10,
-    marginStart : 10,
-    marginTop : 5,
+    marginStart: 10,
+    marginTop: 5,
     fontWeight: 'bold',
-    
-  }
+    color: AppColor.gray,
+  },
+  fabButton: {
+    position: 'absolute',
+    backgroundColor: AppColor.secondaryColor,
+    borderRadius: 100,
+    bottom: 25,
+    right: 20,
+    padding: 10,
+    elevation: appElevation,
+    shadowColor: AppColor.gray,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  toast: {
+    position: 'absolute',
+    bottom: 50,
+    maxWidth: screenWidth / 1.5,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: AppColor.light_gray,
+    opacity: 0.7,
+    borderRadius: 50,
+    padding: 15,
+  },
+  toastText: {
+    color: '#000',
+    fontSize: 16,
+  },
 });
 
 export default {style, screenHeight, screenWidth, appIconsize, appElevation};

@@ -67,13 +67,14 @@ export interface RetailerMasterBO {
   RetailerID: string;
   RetailerName: string;
   Address1: string;
-  Latitude: string;
-  Longitude: string;
+  Latitude: number;
+  Longitude: number;
   TaskCount: number;
 }
 
 export interface RetailerMasterModel {
   retailerBo: RetailerMasterBO;
+  kpiData: Array<PieValue>;
 }
 export interface PieChartBO {
   value: number;
@@ -87,4 +88,16 @@ export interface PieChartBO {
 export interface PieValue {
   title: string;
   value: number;
+}
+
+export interface FabButtonModel {
+  iconName: string;
+  onClick: () => void;
+}
+
+export interface ToasModel {
+  visible: any;
+  message: string;
+  duration: number;
+  onClose: () => void;
 }

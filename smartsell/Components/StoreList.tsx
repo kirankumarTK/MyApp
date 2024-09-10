@@ -4,8 +4,8 @@ import Appstlye from '../AppThemes/Appstlye';
 import {PieValue, RetailerMasterModel} from '../models/commonModels';
 import RoutePieChart from '../screens/RoutePlanning/RoutePieChart';
 
-const StoreList: React.FC<RetailerMasterModel> = React.memo(({retailerBo}) => {
-  const data : Array<PieValue> = [{title: 'VGP', value: 50}, {title: 'DGP', value: 10},{title: 'IGP', value: 50},{title: 'OOS', value: 70}] ;
+const StoreList: React.FC<RetailerMasterModel> = React.memo(({retailerBo,kpiData}) => {
+
   return (
     <View style={Appstlye.style.list_item}>
       <View style={Appstlye.style.retailer_details_view}>
@@ -18,8 +18,14 @@ const StoreList: React.FC<RetailerMasterModel> = React.memo(({retailerBo}) => {
       <View style={Appstlye.style.retailer_score_view}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={{flexDirection: 'row'}}>
-            {data.map((value,index) => {
-              return <RoutePieChart key={index}  title= {value.title} value={value.value}/>;
+            {kpiData.map((value, index) => {
+              return (
+                <RoutePieChart
+                  key={index}
+                  title={value.title}
+                  value={value.value}
+                />
+              );
             })}
           </View>
         </ScrollView>
@@ -27,5 +33,4 @@ const StoreList: React.FC<RetailerMasterModel> = React.memo(({retailerBo}) => {
     </View>
   );
 });
-
 export default StoreList;

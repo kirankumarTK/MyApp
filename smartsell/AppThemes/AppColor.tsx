@@ -10,7 +10,9 @@ const AppColor = {
   buttonTextColor : '#ffffff',
   white : '#ffffff',
   black : '#000000',
-  red : '#FF0000'
+  red : '#FF0000',
+  gray : '#454545',
+  light_gray : '#e8f5e9'
 };
 
 export default AppColor;

@@ -6,9 +6,19 @@ import MapviewComponent from '../../Components/MapviewComponent';
 import StoreList from '../../Components/StoreList';
 import {RoutePlanningViewModel} from './RoutePlanningViewModel';
 import AppColor from '../../AppThemes/AppColor';
+import FabButton from '../../Components/FabButton';
+import ToastComponent from '../../Components/ToastComponent';
 const RoutePlanningView = () => {
-  const {retailerMasters, getCurrentDate, isEnabled, toggleSwitch} =
-    RoutePlanningViewModel();
+  const {
+    retailerMasters,
+    getCurrentDate,
+    isEnabled,
+    toggleSwitch,
+    data,
+    fabOnClick,
+    handleToastClose,
+    toastVisible,
+  } = RoutePlanningViewModel();
   const {t} = useTranslation();
 
   return (
@@ -46,10 +56,13 @@ const RoutePlanningView = () => {
         style={Appstlye.style.storeList}
         removeClippedSubviews={true}
         maxToRenderPerBatch={10}
-        initialNumToRender={10}
+        initialNumToRender={5}
         keyExtractor={(item, index) => item.RetailerID}
-        renderItem={({item}) => <StoreList retailerBo={item} />}
+        renderItem={({item}) => <StoreList retailerBo={item} kpiData={data} />}
       />
+
+      <FabButton iconName="plus" onClick={fabOnClick} />
+      <ToastComponent message={'Fab button clicked'} onClose={handleToastClose} visible={toastVisible} duration={3000}/>
     </React.Fragment>
   );
 };

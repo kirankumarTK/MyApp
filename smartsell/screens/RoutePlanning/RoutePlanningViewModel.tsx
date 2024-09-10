@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import AppDatabase from '../../Commons/DataBaseHelper';
-import {RetailerMasterBO} from '../../models/commonModels';
+import {PieValue, RetailerMasterBO} from '../../models/commonModels';
 import {setRetailerDetails} from './RetailerMasterSlice';
 
 export const RoutePlanningViewModel = () => {
@@ -11,6 +11,23 @@ export const RoutePlanningViewModel = () => {
   const dispatch = useAppDispatch();
   const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const data: Array<PieValue> = [
+    {title: 'VGP', value: 50},
+    {title: 'DGP', value: 10},
+    {title: 'IGP', value: 50},
+    {title: 'OOS', value: 70},
+  ];
+
+  const [toastVisible, setToastVisible] = useState(false);
+
+  const showToast = () => {
+    setToastVisible(true);
+  };
+
+  const handleToastClose = () => {
+    setToastVisible(false);
+  };
+
   useEffect(() => {
     if (retailerMasters.length <= 0) {
       let query =
@@ -41,5 +58,18 @@ export const RoutePlanningViewModel = () => {
     ];
     return monthNames[now.getMonth()] + ' ' + now.getDate();
   };
-  return {retailerMasters,getCurrentDate,isEnabled,toggleSwitch};
+
+  const fabOnClick = () => {
+    showToast();
+  };
+  return {
+    retailerMasters,
+    getCurrentDate,
+    isEnabled,
+    toggleSwitch,
+    data,
+    fabOnClick,
+    handleToastClose,
+    toastVisible,
+  };
 };
