@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import Appstlye from '../AppThemes/Appstlye';
 import {PieValue, RetailerMasterModel} from '../models/commonModels';
-import RoutePieChart from '../screens/RoutePlanning/RoutePieChart';
+import RoutePieChart from './Chart/RoutePieChart';
 
 const StoreList: React.FC<RetailerMasterModel> = React.memo(({retailerBo,kpiData}) => {
 
