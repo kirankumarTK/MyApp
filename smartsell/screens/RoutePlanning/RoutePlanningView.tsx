@@ -18,6 +18,7 @@ const RoutePlanningView = () => {
     fabOnClick,
     handleToastClose,
     toastVisible,
+    onRetailerListClick
   } = RoutePlanningViewModel();
   const {t} = useTranslation();
 
@@ -58,7 +59,7 @@ const RoutePlanningView = () => {
         maxToRenderPerBatch={10}
         initialNumToRender={5}
         keyExtractor={(item, index) => item.RetailerID}
-        renderItem={({item}) => <StoreList retailerBo={item} kpiData={data} />}
+        renderItem={({item}) => <StoreList retailerBo={item} kpiData={data}  onClick={onRetailerListClick}/>}
       />
 
       <FabButton iconName="plus" onClick={fabOnClick} />

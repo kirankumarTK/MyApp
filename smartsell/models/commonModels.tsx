@@ -75,6 +75,7 @@ export interface RetailerMasterBO {
 export interface RetailerMasterModel {
   retailerBo: RetailerMasterBO;
   kpiData: Array<PieValue>;
+  onClick: (retailerBo: RetailerMasterBO) => void;
 }
 export interface PieChartBO {
   value: number;

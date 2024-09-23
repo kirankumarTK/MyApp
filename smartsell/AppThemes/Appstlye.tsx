@@ -156,6 +156,8 @@ const style = StyleSheet.create({
   },
   storeList: {
     flex: 1.2,
+    marginRight : 5,
+    marginLeft : 5,
   },
   list_item: {
     flex: 1,
@@ -177,6 +179,7 @@ const style = StyleSheet.create({
   retailer_details_view: {
     flex: 0.8,
     marginRight: 20,
+    
   },
   retailer_score_view: {
     flex: 1.2,
@@ -205,7 +208,7 @@ const style = StyleSheet.create({
     borderRadius: 100,
     bottom: 25,
     right: 20,
-    padding: 10,
+    padding: 20,
     elevation: appElevation,
     shadowColor: AppColor.gray,
     shadowOffset: {width: 0, height: 2},

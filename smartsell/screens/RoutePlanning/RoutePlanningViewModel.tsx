@@ -1,8 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import AppDatabase from '../../Commons/DataBaseHelper';
 import {PieValue, RetailerMasterBO} from '../../models/commonModels';
 import {setRetailerDetails} from './RetailerMasterSlice';
+import {NativeModules} from 'react-native';
 
 export const RoutePlanningViewModel = () => {
   const retailerMasters = useAppSelector(
@@ -27,6 +28,8 @@ export const RoutePlanningViewModel = () => {
   const handleToastClose = () => {
     setToastVisible(false);
   };
+
+  const {GPSDistanceCalculator} = NativeModules;
 
   useEffect(() => {
     if (retailerMasters.length <= 0) {
@@ -60,8 +63,16 @@ export const RoutePlanningViewModel = () => {
   };
 
   const fabOnClick = () => {
-    showToast();
+    //showToast();
+    GPSDistanceCalculator.showToast('Hello', (response: any) => {
+      console.log(response);
+    });
   };
+
+  const onRetailerListClick = useCallback((retailerBo: RetailerMasterBO) => {
+    console.log(retailerBo);
+  }, []);
+
   return {
     retailerMasters,
     getCurrentDate,
@@ -71,5 +82,6 @@ export const RoutePlanningViewModel = () => {
     fabOnClick,
     handleToastClose,
     toastVisible,
+    onRetailerListClick
   };
 };
