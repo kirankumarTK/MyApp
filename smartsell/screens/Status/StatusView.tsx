@@ -24,7 +24,6 @@ const StatusView = () => {
         getCurrentLocation();
       })
       .catch(error => {
-        console.log(error);
         showAlert('Permission required', error, 'ok');
       });
   }

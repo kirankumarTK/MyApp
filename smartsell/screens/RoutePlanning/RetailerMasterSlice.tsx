@@ -24,4 +24,3 @@ const retailerMasterSlice = createSlice({
 export const {setRetailerDetails} = retailerMasterSlice.actions;
 
 export default retailerMasterSlice.reducer;
-``;

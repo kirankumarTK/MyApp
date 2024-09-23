@@ -4,6 +4,8 @@ import AppDatabase from '../../Commons/DataBaseHelper';
 import {PieValue, RetailerMasterBO} from '../../models/commonModels';
 import {setRetailerDetails} from './RetailerMasterSlice';
 import {NativeModules} from 'react-native';
+import {requestLocationPermission, showAlert} from '../../Commons/utilities';
+import {PERMISSIONS} from 'react-native-permissions';
 
 export const RoutePlanningViewModel = () => {
   const retailerMasters = useAppSelector(
@@ -70,7 +72,13 @@ export const RoutePlanningViewModel = () => {
   };
 
   const onRetailerListClick = useCallback((retailerBo: RetailerMasterBO) => {
-    console.log(retailerBo);
+    requestLocationPermission(PERMISSIONS.ANDROID.CAMERA, 'Camera')
+      .then(response => {
+        console.log(retailerBo);
+      })
+      .catch(error => {
+        showAlert('Permission required', error, 'ok');
+      });
   }, []);
 
   return {
@@ -82,6 +90,6 @@ export const RoutePlanningViewModel = () => {
     fabOnClick,
     handleToastClose,
     toastVisible,
-    onRetailerListClick
+    onRetailerListClick,
   };
 };
