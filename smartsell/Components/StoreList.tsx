@@ -5,9 +5,9 @@ import { RetailerMasterModel } from '../models/commonModels';
 import RoutePieChart from './Chart/RoutePieChart';
 
 const StoreList: React.FC<RetailerMasterModel> = React.memo(
-  ({retailerBo, kpiData,onClick}) => {
+  ({ retailerBo, kpiData, onClick }) => {
     return (
-      <TouchableOpacity onPress={()=> onClick(retailerBo)}>
+      <TouchableOpacity onPress={() => onClick(retailerBo)}>
         <View style={Appstlye.style.list_item}>
           <View style={Appstlye.style.retailer_details_view}>
             <Text style={Appstlye.style.Store_Name}>
@@ -25,7 +25,7 @@ const StoreList: React.FC<RetailerMasterModel> = React.memo(
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }} onStartShouldSetResponder={() => true}>
                 {kpiData.map((value, index) => {
                   return (
                     <RoutePieChart

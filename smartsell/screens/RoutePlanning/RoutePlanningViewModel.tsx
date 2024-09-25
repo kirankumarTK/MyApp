@@ -1,11 +1,11 @@
-import {useCallback, useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import { useCallback, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import AppDatabase from '../../Commons/DataBaseHelper';
-import {PieValue, RetailerMasterBO} from '../../models/commonModels';
-import {setRetailerDetails} from './RetailerMasterSlice';
-import {NativeModules} from 'react-native';
-import {requestLocationPermission, showAlert} from '../../Commons/utilities';
-import {PERMISSIONS} from 'react-native-permissions';
+import { PieValue, RetailerMasterBO } from '../../models/commonModels';
+import { setRetailerDetails } from './RetailerMasterSlice';
+import { NativeModules } from 'react-native';
+import { requestLocationPermission, showAlert } from '../../Commons/utilities';
+import { PERMISSIONS } from 'react-native-permissions';
 
 export const RoutePlanningViewModel = () => {
   const retailerMasters = useAppSelector(
@@ -15,10 +15,11 @@ export const RoutePlanningViewModel = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const data: Array<PieValue> = [
-    {title: 'VGP', value: 50},
-    {title: 'DGP', value: 10},
-    {title: 'IGP', value: 50},
-    {title: 'OOS', value: 70},
+    { title: 'VGP', value: 50 },
+    { title: 'DGP', value: 10 },
+    { title: 'IGP', value: 50 },
+    { title: 'OOS', value: 70 },
+    { title: 'OOS', value: 70 },
   ];
 
   const [toastVisible, setToastVisible] = useState(false);
@@ -31,7 +32,7 @@ export const RoutePlanningViewModel = () => {
     setToastVisible(false);
   };
 
-  const {GPSDistanceCalculator} = NativeModules;
+  const { GPSDistanceCalculator } = NativeModules;
 
   useEffect(() => {
     if (retailerMasters.length <= 0) {
