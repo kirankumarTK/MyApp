@@ -6,6 +6,8 @@ import { setRetailerDetails } from './RetailerMasterSlice';
 import { NativeModules } from 'react-native';
 import { requestLocationPermission, showAlert } from '../../Commons/utilities';
 import { PERMISSIONS } from 'react-native-permissions';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackPramsList } from '../../Components/Navigations/RootStackPramsList';
 
 export const RoutePlanningViewModel = () => {
   const retailerMasters = useAppSelector(
@@ -33,6 +35,8 @@ export const RoutePlanningViewModel = () => {
   };
 
   const { GPSDistanceCalculator } = NativeModules;
+
+  const navigation = useNavigation<NavigationProp<RootStackPramsList,'Home'>>();
 
   useEffect(() => {
     if (retailerMasters.length <= 0) {
@@ -75,6 +79,7 @@ export const RoutePlanningViewModel = () => {
   const onRetailerListClick = useCallback((retailerBo: RetailerMasterBO) => {
     requestLocationPermission(PERMISSIONS.ANDROID.CAMERA, 'Camera')
       .then(response => {
+        navigation.navigate('Camera');
         console.log(retailerBo);
       })
       .catch(error => {

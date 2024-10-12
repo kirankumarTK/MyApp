@@ -156,8 +156,8 @@ const style = StyleSheet.create({
   },
   storeList: {
     flex: 1.2,
-    marginRight : 5,
-    marginLeft : 5,
+    marginRight: 5,
+    marginLeft: 5,
   },
   list_item: {
     flex: 1,
@@ -179,7 +179,6 @@ const style = StyleSheet.create({
   retailer_details_view: {
     flex: 0.8,
     marginRight: 20,
-    
   },
   retailer_score_view: {
     flex: 1.2,
@@ -230,6 +229,18 @@ const style = StyleSheet.create({
     color: '#000',
     fontSize: 16,
   },
+  camera: {
+    position : 'absolute',
+    height: '100%',
+    width: '100%',
+    zIndex : 1
+  },
+  cameraButton : {
+    position : 'absolute',
+    zIndex : 2,
+    bottom : 90,
+    alignSelf : 'center',
+  }
 });
 
 export default {style, screenHeight, screenWidth, appIconsize, appElevation};
